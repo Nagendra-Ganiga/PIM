@@ -2,7 +2,11 @@
 const colors = require('./src/styles/Colors').default;
 
 module.exports = {
-  content: ['./App.tsx', './components/**/*.{js,jsx,ts,tsx}'],
+  content: [
+    './App.tsx',
+    './components/**/*.{js,jsx,ts,tsx}',
+    './src/**/*.{js,jsx,ts,tsx}',
+  ],
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
