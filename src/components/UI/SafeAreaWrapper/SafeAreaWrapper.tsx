@@ -13,7 +13,10 @@ export default function SafeAreaWrapper({
   className,
 }: SafeAreaWrapperProps) {
   return (
-    <SafeAreaView className={`flex-1 ${className}`} edges={edges}>
+    <SafeAreaView
+      className={`flex-1 px-[20px] bg-white ${className}`}
+      edges={edges}
+    >
       {children}
     </SafeAreaView>
   );

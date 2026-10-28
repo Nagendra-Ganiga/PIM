@@ -2,7 +2,7 @@
 export const ButtonStyle = {
   // Button base styles
   btnBase:
-    'rounded-[5px] border py-[10px] px-[20px] items-center justify-center',
+    'rounded-[5px] border py-[8px] px-[20px] items-center justify-center',
   btnTextBase: 'text-[20px] font-HeeboRegular',
 
   // Button backgrounds
@@ -42,4 +42,45 @@ export const ButtonStyle = {
 
   btnTextDisabled: 'text-white',
   btnTextDisabledOutlined: 'text-gray-400',
+};
+
+// Component for styling InputText in the application
+export const InputTextStyle = {
+  inputBase:
+    'w-full h-[56px] border rounded-[8px] text-black px-[20px] text-[20px] font-HeeboRegular',
+
+  labelText: 'text-[16px] font-HeeboRegular mb-[5px] px-[5px]',
+  labelDown:
+    'absolute top-[50%] left-[20px] z-10 bg-white px-[5px] text-[20px] transform translate-y-[-50%]',
+  labelUp: 'absolute top-[-8px] left-[15px] z-10 bg-white px-[5px] text-[14px]',
+
+  inputShowHideIcon:
+    'absolute right-[10px] top-[50%] w-[30px] h-[30px] transform translate-y-[-50%] flex-row items-center justify-center',
+};
+
+// Component for styling Modal in the application
+export const ModalStyle = {
+  modalBox: 'bg-white p-[10px] rounded-lg w-[80%] flex-col gap-4 absolute  ',
+  modalHeader: 'flex-row items-center justify-between ',
+  modalTitle: 'text-[20px] font-HeeboRegular ',
+  modalBody: 'text-[16px] font-HeeboRegular',
+  modalFooter: '',
+};
+
+// Component for styling CheckBox in the application
+export const CheckboxStyle = {
+  checkWrapper: 'flex-row items-center gap-[10px]',
+  checkBox:
+    'w-[20px] h-[20px] items-center justify-center rounded-[4px] border border-gray-400',
+  checkedBox: 'bg-brandBlue border-brandBlue',
+  checkLabel: 'text-[14px] text-black',
+};
+
+// Component for styling RadioBox in the application
+export const RadioButtonStyle = {
+  radioWrapper: 'flex-row items-center gap-[10px]',
+  radioButton: 'items-center justify-center rounded-full border',
+  selectedRadio: 'border-brandBlue bg-white',
+  radioInner: 'bg-brandBlue',
+  radioLabel: 'text14R text-black',
 };
