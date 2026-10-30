@@ -3,10 +3,9 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "nativewind-env.d.ts"
+    "nativewind-env.d.ts",
+    "src/styles/Typography.js",
+    "src/styles/Colors.js"
   ],
-  "exclude": [
-    "**/node_modules",
-    "**/Pods"
-  ]
+  "exclude": ["**/node_modules", "**/Pods"]
 }

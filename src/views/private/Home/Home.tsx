@@ -1,15 +1,20 @@
 import { ScrollView, Text, View } from 'react-native';
 import React, { useState } from 'react';
-import SafeAreaWrapper from '../../../components/UI/SafeAreaWrapper/SafeAreaWrapper';
-import ButtonsWrapper from '../../../components/UI/ButtonsWrapper/ButtonsWrapper';
-import InputTextWrapper from '../../../components/UI/InputTextWrapper/InputTextWrapper';
-import ModalWrapper from '../../../components/UI/ModalWrapper/ModalWrapper';
-import CheckBoxWrapper from '../../../components/UI/CheckBoxWrapper/CheckBoxWrapper';
-import RadioButtonWrapper from '../../../components/UI/RadioBoxWrapper/RadioBoxWrapper';
+import SafeAreaWrapper from '../../../components/UI/SafeArea/SafeAreaWrapper';
+import ButtonsWrapper from '../../../components/UI/Button/ButtonsWrapper';
+import InputTextWrapper from '../../../components/UI/InputText/InputTextWrapper';
+import ModalWrapper from '../../../components/UI/Modal/ModalWrapper';
+import CheckBoxWrapper from '../../../components/UI/CheckBox/CheckBoxWrapper';
+import RadioButtonWrapper from '../../../components/UI/RadioBox/RadioButtonWrapper';
+import SwitchWrapper from '../../../components/UI/Switch/SwitchWrapper';
+import { Images } from '../../../assets/images/Images';
 
 export default function Home() {
   const [email, setEmail] = useState('');
   const [selectedOption, setSelectedOption] = useState('email');
+  const [isEnabled, setIsEnabled] = useState(false);
+  const [comment, setComment] = useState('');
+
   const [checked, setChecked] = useState({
     term: false,
     notification: false,
@@ -25,9 +30,7 @@ export default function Home() {
   return (
     <SafeAreaWrapper className="bg-White">
       <ScrollView>
-        <Text className="text-[30px]  text-center w-[100%] text-black font-HeeboRegular">
-          Buttons
-        </Text>
+        <Text className=" text-center text24BBlack">Input Text1</Text>
         <ButtonsWrapper variant="filled" title="Filled" onPress={() => {}} />
         <ButtonsWrapper
           variant="outlined"
@@ -46,9 +49,31 @@ export default function Home() {
           title="Info"
           onPress={() => {}}
         />
-        <Text className="text-[30px]  text-center w-[100%] text-black font-HeeboRegular">
-          Input Text
-        </Text>
+        <ButtonsWrapper
+          variant="infoOutlined"
+          title="Info"
+          onPress={() => {}}
+          disabled={true}
+        />
+        <ButtonsWrapper
+          buttonType="icon"
+          icon={<Images.Hide />}
+          onPress={() => console.log('Icon clicked')}
+        />
+        <ButtonsWrapper
+          buttonType="iconText"
+          title="Add Item"
+          icon={<Images.Hide />}
+          iconPosition="right"
+          variant="filled"
+          onPress={() => console.log('Add clicked')}
+        />
+        <ButtonsWrapper
+          buttonType="text"
+          title="Forgot Password?"
+          onPress={() => console.log('Forgot clicked')}
+        />
+        <Text className=" text-center text24BRed">Input Text1</Text>
         <InputTextWrapper
           labelText="Name Text"
           focusEnabled={true}
@@ -68,6 +93,18 @@ export default function Home() {
           numberOfLines={40}
           textAlignVertical="top"
           height={200}
+        />
+
+        <InputTextWrapper
+          labelText="Comment Text"
+          focusEnabled={true}
+          value={comment}
+          onChangeText={setComment}
+          floatingLabel={false}
+          multiline={true}
+          numberOfLines={4}
+          textAlignVertical="top"
+          maxLength={500}
         />
         <Text className="text-[30px]  text-center w-[100%] text-black font-HeeboRegular">
           Modal
@@ -137,6 +174,15 @@ export default function Home() {
           label="Push Notification"
           selected={selectedOption === 'push'}
           onPress={() => setSelectedOption('push')}
+        />
+        <Text className="text-[30px]  text-center w-[100%] text-black font-HeeboRegular">
+          Switch Box
+        </Text>
+        <SwitchWrapper
+          value={isEnabled}
+          onValueChange={setIsEnabled}
+          accessibilityLabel="Enable notifications"
+          accessibilityHint="Turns notifications on or off"
         />
       </ScrollView>
     </SafeAreaWrapper>

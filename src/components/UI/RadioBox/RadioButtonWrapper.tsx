@@ -15,8 +15,6 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
-import { RadioButtonStyle } from '../../../styles/GlobalStyles';
-
 type RadioButtonWrapperProps = {
   label?: string;
   selected: boolean;
@@ -87,3 +85,12 @@ export default function RadioButtonWrapper({
     </TouchableOpacity>
   );
 }
+
+// Component for styling RadioBox in the application
+export const RadioButtonStyle = {
+  radioWrapper: 'flex-row items-center gap-[10px]',
+  radioButton: 'items-center justify-center rounded-full border',
+  selectedRadio: 'border-brandBlue bg-white',
+  radioInner: 'bg-brandBlue',
+  radioLabel: 'text14RBlack ',
+};

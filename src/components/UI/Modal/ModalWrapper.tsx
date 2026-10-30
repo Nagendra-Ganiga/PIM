@@ -15,8 +15,7 @@ import React, { useState } from 'react';
 import { View, Text, Pressable, Modal, StyleSheet } from 'react-native';
 import { Images } from '../../../assets/images/Images';
 import { BlurView } from '@react-native-community/blur';
-import { ModalStyle } from '../../../styles/GlobalStyles';
-import ButtonsWrapper from '../ButtonsWrapper/ButtonsWrapper';
+import ButtonsWrapper from '../Button/ButtonsWrapper';
 
 type ModalWrapperProps = {
   modalTitle?: string;
@@ -127,6 +126,15 @@ export default function ModalWrapper({
     </>
   );
 }
+
+// Component for styling Modal in the application
+export const ModalStyle = {
+  modalBox: 'bg-white p-[10px] rounded-lg w-[80%] flex-col gap-4 absolute  ',
+  modalHeader: 'flex-row items-center justify-between ',
+  modalTitle: 'text20RBlack ',
+  modalBody: 'text16RBlack',
+  modalFooter: '',
+};
 
 const styles = StyleSheet.create({
   overlay: {

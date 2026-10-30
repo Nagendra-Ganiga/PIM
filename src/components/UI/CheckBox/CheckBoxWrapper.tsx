@@ -16,7 +16,6 @@ import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
 import { Images } from '../../../assets/images/Images';
-import { CheckboxStyle } from '../../../styles/GlobalStyles';
 
 type CheckBoxWrapperProps = {
   label?: string;
@@ -78,3 +77,12 @@ export default function CheckBoxWrapper({
     </TouchableOpacity>
   );
 }
+
+// Component for styling CheckBox in the application
+export const CheckboxStyle = {
+  checkWrapper: 'flex-row items-center gap-[10px]',
+  checkBox:
+    'w-[20px] h-[20px] items-center justify-center rounded-[4px] border border-darkGray',
+  checkedBox: 'bg-brandBlue border-brandBlue',
+  checkLabel: 'text14RBlack',
+};
