@@ -1,4 +1,4 @@
-// CheckBoxWrapper Features:
+// CheckBox Features:
 // - Reusable checkbox component for multiple screens.
 // - Customizable label text using the label prop.
 // - Controlled checked and unchecked states using the checked prop.
@@ -17,7 +17,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 
 import { Images } from '../../../assets/images/Images';
 
-type CheckBoxWrapperProps = {
+type CheckBoxProps = {
   label?: string;
   checked: boolean;
   onPress: () => void;
@@ -28,7 +28,7 @@ type CheckBoxWrapperProps = {
   containerClassName?: string;
 };
 
-export default function CheckBoxWrapper({
+export default function CheckBox({
   label,
   checked,
   onPress,
@@ -37,7 +37,7 @@ export default function CheckBoxWrapper({
   className = '',
   labelClassName = '',
   containerClassName = '',
-}: CheckBoxWrapperProps) {
+}: CheckBoxProps) {
   const containerStyles = [
     CheckboxStyle.checkWrapper,
     disabled && 'opacity-50',

@@ -1,4 +1,4 @@
-// ButtonsWrapper Features
+// Button Features
 // - Reusable button component for React Native applications.
 // - Supports four button types: Default, Icon, Icon with Text, and Plain Text.
 // - Supports multiple button variants: Filled, Outlined, Success,
@@ -37,7 +37,7 @@ type ButtonVariant =
   | 'info'
   | 'infoOutlined';
 
-type ButtonsWrapperProps = {
+type ButtonProps = {
   title?: string;
   onPress?: () => void;
   disabled?: boolean;
@@ -48,7 +48,7 @@ type ButtonsWrapperProps = {
   style?: ViewStyle;
 };
 
-export default function ButtonsWrapper({
+export default function Button({
   title,
   onPress,
   disabled = false,
@@ -57,7 +57,7 @@ export default function ButtonsWrapper({
   icon,
   iconPosition = 'left',
   style,
-}: ButtonsWrapperProps) {
+}: ButtonProps) {
   // Default variant applies only to default buttons
   const activeVariant: ButtonVariant =
     variant ?? (buttonType === 'default' ? 'filled' : 'filled');

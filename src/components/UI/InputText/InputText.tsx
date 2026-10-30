@@ -1,4 +1,4 @@
-// InputTextWrapper Features
+// InputText Features
 // - Reusable React Native input component with floating label and placeholder support.
 // - Supports controlled input values using value and onChangeText.
 // - Supports different keyboard types, including email, numeric, phone-pad, and default keyboards.
@@ -30,7 +30,7 @@ import {
 
 import { Images } from '../../../assets/images/Images';
 
-type InputTextWrapperProps = {
+type InputTextProps = {
   labelText?: string;
   floatingLabel?: boolean;
   placeholder?: string;
@@ -48,7 +48,7 @@ type InputTextWrapperProps = {
   height?: number | string;
 };
 
-export default function InputTextWrapper({
+export default function InputText({
   labelText = 'Name',
   floatingLabel = true,
   placeholder,
@@ -64,7 +64,7 @@ export default function InputTextWrapper({
   numberOfLines,
   textAlignVertical = 'center',
   height,
-}: InputTextWrapperProps) {
+}: InputTextProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [textAreaHeight, setTextAreaHeight] = useState(56);

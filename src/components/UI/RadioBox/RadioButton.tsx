@@ -1,4 +1,4 @@
-// RadioButtonWrapper Features:
+// RadioButton Features:
 // - Reusable radio button component for multiple screens.
 // - Customizable label text using the label prop.
 // - Controlled selected and unselected states using the selected prop.
@@ -15,7 +15,7 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
-type RadioButtonWrapperProps = {
+type RadioButtonProps = {
   label?: string;
   selected: boolean;
   onPress: () => void;
@@ -26,7 +26,7 @@ type RadioButtonWrapperProps = {
   containerClassName?: string;
 };
 
-export default function RadioButtonWrapper({
+export default function RadioButton({
   label,
   selected,
   onPress,
@@ -35,7 +35,7 @@ export default function RadioButtonWrapper({
   className = '',
   labelClassName = '',
   containerClassName = '',
-}: RadioButtonWrapperProps) {
+}: RadioButtonProps) {
   const containerStyles = [
     RadioButtonStyle.radioWrapper,
     disabled && 'opacity-50',

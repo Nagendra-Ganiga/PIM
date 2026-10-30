@@ -1,11 +1,11 @@
 import { ScrollView, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import SafeAreaWrapper from '../../../components/UI/SafeArea/SafeAreaWrapper';
-import ButtonsWrapper from '../../../components/UI/Button/ButtonsWrapper';
-import InputTextWrapper from '../../../components/UI/InputText/InputTextWrapper';
-import ModalWrapper from '../../../components/UI/Modal/ModalWrapper';
-import CheckBoxWrapper from '../../../components/UI/CheckBox/CheckBoxWrapper';
-import RadioButtonWrapper from '../../../components/UI/RadioBox/RadioButtonWrapper';
+import ButtonsWrapper from '../../../components/UI/Button/Button';
+import InputTextWrapper from '../../../components/UI/InputText/InputText';
+import ModalWrapper from '../../../components/UI/Modal/Modal';
+import CheckBoxWrapper from '../../../components/UI/CheckBox/CheckBox';
+import RadioButtonWrapper from '../../../components/UI/RadioBox/RadioButton';
 import SwitchWrapper from '../../../components/UI/Switch/SwitchWrapper';
 import { Images } from '../../../assets/images/Images';
 

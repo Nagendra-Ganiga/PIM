@@ -15,7 +15,7 @@ import React, { useState } from 'react';
 import { View, Text, Pressable, Modal, StyleSheet } from 'react-native';
 import { Images } from '../../../assets/images/Images';
 import { BlurView } from '@react-native-community/blur';
-import ButtonsWrapper from '../Button/ButtonsWrapper';
+import ButtonsWrapper from '../Button/Button';
 
 type ModalWrapperProps = {
   modalTitle?: string;
