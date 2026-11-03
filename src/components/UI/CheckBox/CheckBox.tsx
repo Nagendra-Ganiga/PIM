@@ -14,7 +14,6 @@
 
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-
 import { Images } from '../../../assets/images/Images';
 
 type CheckBoxProps = {

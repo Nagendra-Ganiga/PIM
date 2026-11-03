@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import React, { useState } from 'react';
 import SafeAreaWrapper from '../../../components/UI/SafeArea/SafeAreaWrapper';
 import ButtonsWrapper from '../../../components/UI/Button/Button';
@@ -7,18 +7,23 @@ import ModalWrapper from '../../../components/UI/Modal/Modal';
 import CheckBoxWrapper from '../../../components/UI/CheckBox/CheckBox';
 import RadioButtonWrapper from '../../../components/UI/RadioBox/RadioButton';
 import SwitchWrapper from '../../../components/UI/Switch/SwitchWrapper';
+import DatePickerWrapper from '../../../components/UI/DatePicker/DatePicker';
+import DropdownWrapper from '../../../components/UI/DropDown/DropDown';
+
 import { Images } from '../../../assets/images/Images';
+import KeyboardAvoidingWrapper from '../../../components/UI/KeyboardAvoidingView/KeyboardAvoiding';
 
 export default function Home() {
   const [email, setEmail] = useState('');
   const [selectedOption, setSelectedOption] = useState('email');
   const [isEnabled, setIsEnabled] = useState(false);
   const [comment, setComment] = useState('');
-
+  const [date, setDate] = useState(new Date());
   const [checked, setChecked] = useState({
     term: false,
     notification: false,
   });
+  const [selectedValue, setSelectedValue] = useState<string | null>(null);
 
   const toggleCheckedBox = (key: keyof typeof checked) => {
     setChecked(prev => ({
@@ -27,9 +32,21 @@ export default function Home() {
     }));
   };
 
+  const dropdownData = [
+    { label: 'Apple', value: '1' },
+    { label: 'Banana', value: '2' },
+    { label: 'Orange', value: '3' },
+    { label: 'Mango', value: '4' },
+  ];
   return (
     <SafeAreaWrapper className="bg-White">
-      <ScrollView>
+      <KeyboardAvoidingWrapper>
+        <DropdownWrapper
+          data={dropdownData}
+          value={selectedValue}
+          onChange={item => setSelectedValue(item.value)}
+          placeholder="Select Fruit"
+        />
         <Text className=" text-center text24BBlack">Input Text1</Text>
         <ButtonsWrapper variant="filled" title="Filled" onPress={() => {}} />
         <ButtonsWrapper
@@ -184,7 +201,43 @@ export default function Home() {
           accessibilityLabel="Enable notifications"
           accessibilityHint="Turns notifications on or off"
         />
-      </ScrollView>
+        <Text className="text-[30px]  text-center w-[100%] text-black font-HeeboRegular">
+          Date Picker
+        </Text>
+        {/* <DatePickerWrapper date={date} onDateChange={setDate}>
+          <Text>Select Date</Text>
+        </DatePickerWrapper> */}
+        <DatePickerWrapper date={date} mode="datetime" onDateChange={setDate}>
+          <Text>Select Date & Time</Text>
+        </DatePickerWrapper>
+
+        <Text className="text-[30px]  text-center w-[100%] text-black font-HeeboRegular">
+          DropDown
+        </Text>
+
+        {/* <DropdownWrapper
+          label="Select Fruits"
+          data={data}
+          value={selected}
+          onChange={selected => setSelected(selected)}
+          multiSelect
+          search
+          // selectAll
+          clearable
+          confirmSelection
+          placeholder="Choose fruits"
+        />
+        
+        <DropdownWrapper
+          label="Department"
+          data={data}
+          value={selected}
+          onChange={selected => setSelected(selected)}
+          required
+          floatingLabel
+          errorMessage={!data ? 'Department is required' : undefined}
+        /> */}
+      </KeyboardAvoidingWrapper>
     </SafeAreaWrapper>
   );
 }
