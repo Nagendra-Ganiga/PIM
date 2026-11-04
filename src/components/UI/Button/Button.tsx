@@ -35,7 +35,9 @@ type ButtonVariant =
   | 'warning'
   | 'warningOutlined'
   | 'info'
-  | 'infoOutlined';
+  | 'infoOutlined'
+  | 'BackButton'
+  | 'BackButtonOutlined';
 
 type ButtonProps = {
   title?: string;
@@ -46,6 +48,7 @@ type ButtonProps = {
   icon?: React.ReactNode;
   iconPosition?: 'left' | 'right';
   style?: ViewStyle;
+  rounded?: boolean;
 };
 
 export default function Button({
@@ -57,12 +60,14 @@ export default function Button({
   icon,
   iconPosition = 'left',
   style,
+  rounded = false,
 }: ButtonProps) {
   // Default variant applies only to default buttons
   const activeVariant: ButtonVariant =
     variant ?? (buttonType === 'default' ? 'filled' : 'filled');
 
   const isOutlined = activeVariant.toLowerCase().includes('outlined');
+  const roundedClass = rounded ? 'rounded-full' : 'rounded-[5px]';
 
   // Button background and border styles
   const buttonClass = disabled
@@ -83,6 +88,8 @@ export default function Button({
     warningOutlined: ButtonStyle.btnTextWarningOutlined,
     info: ButtonStyle.btnTextInfo,
     infoOutlined: ButtonStyle.btnTextInfoOutlined,
+    BackButton: ButtonStyle.btnTextBackButton,
+    BackButtonOutlined: ButtonStyle.btnTextBackButtonOutlined,
   };
 
   const textClass = disabled
@@ -102,11 +109,11 @@ export default function Button({
     ? ButtonStyle.textButton
     : isIconOnly
     ? variant
-      ? `${ButtonStyle.iconButton} ${buttonClass}`
-      : ButtonStyle.iconButton
+      ? `${ButtonStyle.iconButton} ${buttonClass} ${roundedClass}`
+      : `${ButtonStyle.iconButton} ${roundedClass}`
     : buttonType === 'iconText'
-    ? `${ButtonStyle.btnBase} ${buttonClass}`
-    : `${ButtonStyle.btnBase} ${buttonClass}`;
+    ? `${ButtonStyle.btnBase} ${buttonClass} ${roundedClass}`
+    : `${ButtonStyle.btnBase} ${buttonClass} ${roundedClass}`;
 
   return (
     <TouchableOpacity
@@ -154,17 +161,17 @@ export const ButtonStyle = {
     'rounded-[5px] border py-[8px] px-[20px] items-center justify-center',
 
   // Default button text
-  btnTextBase: 'text20RWhite',
+  btnTextBase: 'text14RWhite',
 
   // Button backgrounds
   filled: 'bg-brandBlue border-brandBlue',
-  outlined: 'bg-transparent border-brandBlue',
+  outlined: 'bg-transparent border-lightGray',
 
-  success: 'bg-green-600 border-green-600',
-  successOutlined: 'bg-transparent border-green-600',
+  success: 'bg-brandTeal border-brandTeal',
+  successOutlined: 'bg-transparent border-brandTeal',
 
-  danger: 'bg-red border-red',
-  dangerOutlined: 'bg-transparent border-red-600',
+  danger: 'bg-brandRed border-brandRed',
+  dangerOutlined: 'bg-transparent border-brandRed',
 
   warning: 'bg-amber-500 border-amber-500',
   warningOutlined: 'bg-transparent border-amber-500',
@@ -172,15 +179,19 @@ export const ButtonStyle = {
   info: 'bg-sky-600 border-sky-600',
   infoOutlined: 'bg-transparent border-sky-600',
 
+  BackButton:
+    'bg-brandLightGray border-brandLightGray p-[10px] flex items-center justify-center rounded-[5px] ',
+  BackButtonOutlined: 'bg-transparent border-brandLightGray',
+
   disabled: 'bg-gray-400 border-gray-400',
   disabledOutlined: 'bg-transparent border-gray-400',
 
   // Button Text styles
-  btnTextFilled: 'text20RWhite',
-  btnTextOutlined: 'text20RBrandBlue',
+  btnTextFilled: 'text14BWhite',
+  btnTextOutlined: 'text14BBrandDarkBlue',
 
-  btnTextSuccess: 'text20RWhite',
-  btnTextSuccessOutlined: 'text20RSuccess',
+  btnTextSuccess: 'text14BBrandTealBase',
+  btnTextSuccessOutlined: 'text14BBrandTealBase',
 
   btnTextDanger: 'text20RWhite',
   btnTextDangerOutlined: 'text20RRed',
@@ -193,6 +204,9 @@ export const ButtonStyle = {
 
   btnTextDisabled: 'text20RWhite',
   btnTextDisabledOutlined: 'text20RDarkGray',
+
+  btnTextBackButton: 'text20RWhite',
+  btnTextBackButtonOutlined: 'text20RBrandLightGray',
 
   // Icon button
   iconButton: 'self-start rounded-[5px] p-[10px] items-center justify-center',

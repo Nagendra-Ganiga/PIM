@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, Pressable, ScrollView } from 'react-native';
+import { useNavigation, useNavigationState } from '@react-navigation/native';
+
 import {
   Box,
-  CalendarDays,
-  History,
   Home,
-  Printer,
-  RefreshCw,
+  CalendarDays,
   ScanLine,
+  ClipboardList,
+  RefreshCw,
+  Printer,
   User,
 } from 'lucide-react-native';
 
@@ -17,7 +19,7 @@ const menuItems = [
   { id: 'Home', label: 'Home', icon: Home },
   { id: 'Schedules', label: 'Schedules', icon: CalendarDays },
   { id: 'Count', label: 'Count', icon: ScanLine },
-  { id: 'Records', label: 'Records', icon: History },
+  { id: 'Records', label: 'Records', icon: ClipboardList },
   { id: 'Sync', label: 'Sync', icon: RefreshCw, badge: 3 },
 ];
 
@@ -27,16 +29,24 @@ const bottomMenuItems = [
 ];
 
 export default function Sidebar() {
-  const [menuActive, setMenuActive] = useState('Home');
+  const navigation = useNavigation<any>();
+
+  const activeRoute = useNavigationState(
+    state => state.routes[state.index]?.name,
+  );
 
   const renderMenuItem = (item: any) => {
     const Icon = item.icon;
-    const isActive = menuActive === item.id;
+    const isActive = activeRoute === item.id;
 
     return (
       <Pressable
         key={item.id}
-        onPress={() => setMenuActive(item.id)}
+        onPress={() => {
+          if (item.id === 'Home' || item.id === 'Schedules') {
+            navigation.navigate(item.id);
+          }
+        }}
         className={`${SidebarStyles.MenuItem} ${
           isActive ? 'bg-brandDarkBlue border-brandBlue' : 'border-transparent'
         }`}
@@ -70,9 +80,12 @@ export default function Sidebar() {
 
   return (
     <View className={SidebarStyles.Container}>
-      <View className={SidebarStyles.Logo}>
-        <Box size={25} color={Colors.white} />
-      </View>
+      <Pressable
+        className={SidebarStyles.Logo}
+        onPress={() => navigation.navigate('Home')}
+      >
+        <Box color={Colors.white} size={24} />
+      </Pressable>
 
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         <View className={SidebarStyles.MenuList}>
