@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-type StatusType =
+export type StatusType =
   | 'active'
   | 'review'
   | 'upcoming'
@@ -12,7 +12,7 @@ type StatusType =
   | 'info';
 
 type StatusBadgeProps = {
-  status: StatusType;
+  statusType: StatusType;
   title?: string;
 };
 
@@ -51,16 +51,17 @@ const StatusStyles: Record<StatusType, { background: string; text: string }> = {
   },
 };
 
-export default function StatusBadge({ status, title }: StatusBadgeProps) {
-  const style = StatusStyles[status];
+export default function StatusBadge({ statusType, title }: StatusBadgeProps) {
+  const style = StatusStyles[statusType];
 
-  const label = title ?? status.charAt(0).toUpperCase() + status.slice(1);
+  const label =
+    title ?? statusType.charAt(0).toUpperCase() + statusType.slice(1);
 
   return (
     <View
-      className={`${style.background} rounded-full px-[12px] py-[6px] self-start items-center justify-center`}
+      className={`${style.background} rounded-full px-[12px] py-[6px]  items-center justify-center`}
     >
-      <Text className={`${style.text} `}>{label}</Text>
+      <Text className={style.text}>{label}</Text>
     </View>
   );
 }

@@ -2,8 +2,8 @@ import React from 'react';
 import { createStaticNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Home from '../../views/private/Landing/Home';
-import Schedules from '../../views/private/Schedules/Schedules';
+import Home from '../../views/private/Home/HomeScreen';
+import Schedules from '../../views/private/Schedules/SchedulesScreen';
 
 const RootStack = createNativeStackNavigator({
   screenOptions: {

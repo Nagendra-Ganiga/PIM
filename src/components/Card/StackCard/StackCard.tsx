@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import Colors from '../../../styles/Colors';
 
-type StatCardProps = {
+export type StatCardProps = {
   title?: string;
   value?: string | number;
   subtitle?: string;

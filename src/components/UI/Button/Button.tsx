@@ -23,11 +23,18 @@
 //   success/error messages, and general application actions.
 
 import React from 'react';
-import { Text, TouchableOpacity, View, type ViewStyle } from 'react-native';
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  type ViewStyle,
+  type StyleProp,
+} from 'react-native';
 
 type ButtonVariant =
   | 'filled'
   | 'outlined'
+  | 'softOutlined'
   | 'success'
   | 'successOutlined'
   | 'danger'
@@ -39,15 +46,15 @@ type ButtonVariant =
   | 'BackButton'
   | 'BackButtonOutlined';
 
-type ButtonProps = {
+export type ButtonProps = {
   title?: string;
   onPress?: () => void;
   disabled?: boolean;
   variant?: ButtonVariant;
   buttonType?: 'default' | 'icon' | 'iconText' | 'text';
   icon?: React.ReactNode;
-  iconPosition?: 'left' | 'right';
-  style?: ViewStyle;
+  iconPosition?: 'left' | 'right' | 'top';
+  style?: StyleProp<ViewStyle>;
   rounded?: boolean;
 };
 
@@ -80,6 +87,7 @@ export default function Button({
   const textStyleMap: Record<ButtonVariant, string> = {
     filled: ButtonStyle.btnTextFilled,
     outlined: ButtonStyle.btnTextOutlined,
+    softOutlined: ButtonStyle.btnSoftTextOutlined,
     success: ButtonStyle.btnTextSuccess,
     successOutlined: ButtonStyle.btnTextSuccessOutlined,
     danger: ButtonStyle.btnTextDanger,
@@ -126,9 +134,17 @@ export default function Button({
       {isIconOnly && renderIcon()}
 
       {buttonType === 'iconText' && (
-        <View className={ButtonStyle.btnContentBase}>
+        <View
+          className={`
+        ${
+          iconPosition === 'top'
+            ? 'flex-col items-center justify-center gap-[10px]'
+            : ButtonStyle.btnContentBase
+        }
+        `}
+        >
           {iconPosition === 'left' && renderIcon()}
-
+          {iconPosition === 'top' && renderIcon()}
           {title && (
             <Text className={`${ButtonStyle.btnTextBase} ${textClass}`}>
               {title}
@@ -139,16 +155,17 @@ export default function Button({
         </View>
       )}
 
-      {(buttonType === 'default' || isPlainText) && title && (
-        <Text
-          className={
-            isPlainText
-              ? ButtonStyle.plainText
-              : `${ButtonStyle.btnTextBase} ${textClass}`
-          }
-        >
-          {title}
-        </Text>
+      {buttonType === 'default' && title && (
+        <Text className={textClass}>{title}</Text>
+      )}
+      {isPlainText && (
+        <View className={ButtonStyle.btnContentBase}>
+          {iconPosition === 'left' && renderIcon()}
+
+          {title && <Text className={ButtonStyle.plainText}>{title}</Text>}
+
+          {iconPosition === 'right' && renderIcon()}
+        </View>
       )}
     </TouchableOpacity>
   );
@@ -156,16 +173,15 @@ export default function Button({
 
 // Component for styling buttons in the application
 export const ButtonStyle = {
-  // Button base styles
-  btnBase:
-    'rounded-[5px] border py-[8px] px-[20px] items-center justify-center',
+  // Base
+  btnBase: 'border py-[8px] px-[20px] items-center justify-center',
 
-  // Default button text
-  btnTextBase: 'text14RWhite',
+  btnTextBase: 'text14BWhite',
 
   // Button backgrounds
   filled: 'bg-brandBlue border-brandBlue',
   outlined: 'bg-transparent border-lightGray',
+  softOutlined: 'bg-brandLightGray border-brandLightGray',
 
   success: 'bg-brandTeal border-brandTeal',
   successOutlined: 'bg-transparent border-brandTeal',
@@ -180,15 +196,17 @@ export const ButtonStyle = {
   infoOutlined: 'bg-transparent border-sky-600',
 
   BackButton:
-    'bg-brandLightGray border-brandLightGray p-[10px] flex items-center justify-center rounded-[5px] ',
+    'bg-brandLightGray border-brandLightGray p-[10px] items-center justify-center',
   BackButtonOutlined: 'bg-transparent border-brandLightGray',
 
+  // Disabled
   disabled: 'bg-gray-400 border-gray-400',
   disabledOutlined: 'bg-transparent border-gray-400',
 
-  // Button Text styles
+  // Text variants
   btnTextFilled: 'text14BWhite',
   btnTextOutlined: 'text14BBrandDarkBlue',
+  btnSoftTextOutlined: 'text14BBrandBlue',
 
   btnTextSuccess: 'text14BBrandTealBase',
   btnTextSuccessOutlined: 'text14BBrandTealBase',
@@ -209,10 +227,10 @@ export const ButtonStyle = {
   btnTextBackButtonOutlined: 'text20RBrandLightGray',
 
   // Icon button
-  iconButton: 'self-start rounded-[5px] p-[10px] items-center justify-center',
-  // Button content styles
+  iconButton: 'self-start p-[10px] items-center justify-center',
+
+  // Content layout
   btnContentBase: 'flex-row items-center gap-[10px]',
-  // Plain text button
   textButton: 'items-center justify-center',
-  plainText: 'text20RBrandBlue',
+  plainText: 'text14BBrandBlue',
 };

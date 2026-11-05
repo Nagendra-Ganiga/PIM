@@ -1,8 +1,8 @@
 import { View } from 'react-native';
 import React from 'react';
-import SafeAreaWrapper from '../components/UI/SafeArea/SafeAreaWrapper';
-import Sidebar from '../components/Sidebar/Sidebar';
-import Header from '../components/Header/Header';
+import SafeAreaWrapper from '../UI/SafeArea/SafeAreaWrapper';
+import Sidebar from './Sidebar';
+import Header from './Header';
 
 type LayoutProps = {
   title?: string;
