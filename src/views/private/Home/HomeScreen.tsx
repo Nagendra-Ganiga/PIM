@@ -5,7 +5,7 @@ import { Bell } from 'lucide-react-native';
 import Button from '../../../components/UI/Button/Button';
 import Colors from '../../../styles/Colors';
 import AssignmentCardItem from '../../../components/views/private/Home/components/AssignmentCardItem/AssignmentCardItem';
-import StackCardItem from '../../../components/views/private/Home/components/StackCardItem';
+import StackCardItem from '../../../components/views/private/Home/components/StackCardItem/StackCardItem';
 import QuickActionsCardItem from '../../../components/views/private/Home/components/QuickActionsCardItem/QuickActionsCardItem';
 import ActivityCardItem from '../../../components/views/private/Home/components/ActivityCardItem/ActivityCardItem';
 import DeviceReadCardItem from '../../../components/views/private/Home/components/DeviceReadCardItem/DeviceReadCardItem';

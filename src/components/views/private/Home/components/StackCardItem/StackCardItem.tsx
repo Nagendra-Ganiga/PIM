@@ -8,10 +8,10 @@ import {
   CloudUpload,
   AlertTriangle,
 } from 'lucide-react-native';
-import Colors from '../../../../../styles/Colors';
+import Colors from '../../../../../../styles/Colors';
 import StackCard, {
   type StatCardProps,
-} from '../../../../Card/StackCard/StackCard';
+} from '../../../../../Card/StackCard/StackCard';
 
 type StackCardItemData = StatCardProps & {
   id: number;
