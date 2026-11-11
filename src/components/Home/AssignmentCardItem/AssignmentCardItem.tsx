@@ -2,13 +2,13 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { ScanLine } from 'lucide-react-native';
 
-import Button from '../../../UI/Button/Button';
-import Colors from '../../../../styles/Colors';
-import ProgressBar from '../../../UI/ProgressBar/ProgressBar';
+import Button from '../../UI/Button/Button';
+import Colors from '../../../styles/Colors';
+import ProgressBar from '../../UI/ProgressBar/ProgressBar';
 import SectionHeader, {
   type SectionHeaderProps,
-} from '../../../UI/Card/CardHeader/CardHeader';
-import Card from '../../../UI/Card/Card';
+} from '../../UI/Card/CardHeader/CardHeader';
+import Card from '../../UI/Card/Card';
 
 export type AssignmentCardProps = {
   sectionHeader?: SectionHeaderProps;

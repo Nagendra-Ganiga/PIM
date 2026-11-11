@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import Card from '../../../UI/Card/Card';
+import Card from '../../UI/Card/Card';
 
 export type StatsItem = {
   id: number;

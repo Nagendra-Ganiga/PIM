@@ -6,16 +6,16 @@ import Button from '../../../components/UI/Button/Button';
 import Colors from '../../../styles/Colors';
 import AssignmentCardItem, {
   type AssignmentCardProps,
-} from '../../../components/Home/components/AssignmentCardItem/AssignmentCardItem';
+} from '../../../components/Home/AssignmentCardItem/AssignmentCardItem';
 import QuickActionsCardItem, {
   type QuickActionItem,
-} from '../../../components/Home/components/QuickActionsCardItem/QuickActionsCardItem';
+} from '../../../components/Home/QuickActionsCardItem/QuickActionsCardItem';
 import ActivityCardItem, {
   type ActivityItem,
-} from '../../../components/Home/components/ActivityCardItem/ActivityCardItem';
+} from '../../../components/Home/ActivityCardItem/ActivityCardItem';
 import DeviceReadCardItem, {
   type DeviceReadItem,
-} from '../../../components/Home/components/DeviceReadCardItem/DeviceReadCardItem';
+} from '../../../components/Home/DeviceReadCardItem/DeviceReadCardItem';
 import Header from '../../../components/Layout/Header';
 import {
   CalendarDays,
@@ -28,7 +28,7 @@ import {
 } from 'lucide-react-native';
 import StackCardItem, {
   type StatsItem,
-} from '../../../components/Home/components/StackCardItem/StackCardItem';
+} from '../../../components/Home/StackCardItem/StackCardItem';
 import { ChevronRight } from 'lucide-react-native/icons';
 
 const stats: StatsItem[] = [

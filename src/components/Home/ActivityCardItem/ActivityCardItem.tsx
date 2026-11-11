@@ -4,9 +4,9 @@ import { Check, ChevronRight } from 'lucide-react-native';
 
 import SectionHeader, {
   type SectionHeaderProps,
-} from '../../../UI/Card/CardHeader/CardHeader';
-import Card from '../../../UI/Card/Card';
-import Colors from '../../../../styles/Colors';
+} from '../../UI/Card/CardHeader/CardHeader';
+import Card from '../../UI/Card/Card';
+import Colors from '../../../styles/Colors';
 
 export type ActivityItem = {
   id: number;
