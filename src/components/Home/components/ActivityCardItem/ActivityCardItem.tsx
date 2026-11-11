@@ -4,10 +4,9 @@ import { Check, ChevronRight } from 'lucide-react-native';
 
 import SectionHeader, {
   type SectionHeaderProps,
-} from '../SectionHeader/SectionHeader';
-
-import { CardStyle } from '../../../styles/GlobalStyles';
-import Colors from '../../../styles/Colors';
+} from '../../../UI/Card/CardHeader/CardHeader';
+import Card from '../../../UI/Card/Card';
+import Colors from '../../../../styles/Colors';
 
 export type ActivityItem = {
   id: number;
@@ -22,58 +21,52 @@ type ActivityCardProps = {
   activities: ActivityItem[];
 };
 
-export default function ActivityCard({
+export default function ActivityCardItem({
   sectionHeaderProps,
   activities,
 }: ActivityCardProps) {
   return (
-    <View className={CardStyle.Card}>
+    <Card>
       {sectionHeaderProps && <SectionHeader {...sectionHeaderProps} />}
 
-      <View className={ActivityStyles.List}>
+      <View className={ActivityStyles.list}>
         {activities.map(item => (
           <Pressable
             key={item.id}
             onPress={item.onPress}
-            className={ActivityStyles.Row}
+            className={ActivityStyles.row}
           >
             {/* Success Icon */}
-            <View className={ActivityStyles.IconWrapper}>
+            <View className={ActivityStyles.iconWrapper}>
               <Check size={20} color={Colors.brandTealBase} />
             </View>
 
             {/* Activity Details */}
-            <View className={ActivityStyles.Details}>
-              <Text className={ActivityStyles.Title}>{item.title}</Text>
+            <View className={ActivityStyles.details}>
+              <Text className={ActivityStyles.title}>{item.title}</Text>
 
-              <Text className={ActivityStyles.Reference}>{item.reference}</Text>
+              <Text className={ActivityStyles.reference}>{item.reference}</Text>
             </View>
 
             {/* Time */}
-            <Text className={ActivityStyles.Time}>{item.time}</Text>
+            <Text className={ActivityStyles.time}>{item.time}</Text>
 
             {/* Arrow */}
             <ChevronRight size={20} color={Colors.brandDarkBlue} />
           </Pressable>
         ))}
       </View>
-    </View>
+    </Card>
   );
 }
 
 export const ActivityStyles = {
-  List: '',
-
-  Row: 'flex-row items-center gap-[12px] px-[15px] py-[15px] border-b border-lightGray',
-
-  IconWrapper:
+  list: '',
+  row: 'flex-row items-center gap-[12px] px-[15px] py-[15px] border-b border-lightGray',
+  iconWrapper:
     ' rounded-[10px] bg-brandTeal  items-center justify-center px-[10px] py-[10px]',
-
-  Details: 'flex-1 gap-[5px]',
-
-  Title: 'text12BDarkNavyBlue',
-
-  Reference: 'text10RMediumGray',
-
-  Time: 'text10RMediumGray',
+  details: 'flex-1 gap-[5px]',
+  title: 'text12BDarkNavyBlue',
+  reference: 'text10RMediumGray',
+  time: 'text10RMediumGray',
 };

@@ -47,7 +47,7 @@ export default function Sidebar() {
             navigation.navigate(item.id);
           }
         }}
-        className={`${SidebarStyles.MenuItem} ${
+        className={`${SidebarStyles.menuItem} ${
           isActive ? 'bg-brandDarkBlue border-brandBlue' : 'border-transparent'
         }`}
       >
@@ -59,16 +59,16 @@ export default function Sidebar() {
           />
 
           {item.badge && (
-            <View className={SidebarStyles.Badge}>
+            <View className={SidebarStyles.badge}>
               <Text className="text-white text-xs font-bold">{item.badge}</Text>
             </View>
           )}
 
-          {item.dot && <View className={SidebarStyles.StatusDot} />}
+          {item.dot && <View className={SidebarStyles.statusDot} />}
         </View>
 
         <Text
-          className={`${SidebarStyles.MenuLabel} ${
+          className={`${SidebarStyles.menuLabel} ${
             isActive ? 'text-white' : 'text-mediumGray'
           }`}
         >
@@ -79,21 +79,21 @@ export default function Sidebar() {
   };
 
   return (
-    <View className={SidebarStyles.Container}>
+    <View className={SidebarStyles.container}>
       <Pressable
-        className={SidebarStyles.Logo}
+        className={SidebarStyles.logo}
         onPress={() => navigation.navigate('Home')}
       >
         <Box color={Colors.white} size={24} />
       </Pressable>
 
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <View className={SidebarStyles.MenuList}>
+        <View className={SidebarStyles.menuList}>
           {menuItems.map(renderMenuItem)}
         </View>
       </ScrollView>
 
-      <View className={SidebarStyles.BottomMenu}>
+      <View className={SidebarStyles.bottomMenu}>
         {bottomMenuItems.map(renderMenuItem)}
       </View>
     </View>
@@ -101,22 +101,22 @@ export default function Sidebar() {
 }
 
 const SidebarStyles = {
-  Container: 'flex-1 bg-darkNavyBlue p-[10px]',
+  container: 'flex-1 bg-darkNavyBlue p-[10px]',
 
-  Logo: 'items-center justify-center mb-[20px] bg-brandBlue px-[20px] py-[15px] mx-[10px] rounded-[10px]',
+  logo: 'items-center justify-center mb-[20px] bg-brandBlue px-[20px] py-[15px] mx-[10px] rounded-[10px]',
 
-  MenuList: 'gap-[10px]',
+  menuList: 'gap-[10px]',
 
-  MenuItem:
+  menuItem:
     'relative flex-col items-center justify-center p-[10px] gap-[5px] rounded-[10px] border-l-[3px]',
 
-  MenuLabel: 'text-[12px] font-HeeboRegular',
+  menuLabel: 'text-[12px] font-HeeboRegular',
 
-  Badge:
+  badge:
     'absolute -top-2 -right-3 bg-red rounded-full w-[18px] h-[18px] items-center justify-center',
 
-  StatusDot: 'absolute -top-1 -right-2 w-2 h-2 rounded-full bg-emerald-400',
+  statusDot: 'absolute -top-1 -right-2 w-2 h-2 rounded-full bg-emerald-400',
 
-  BottomMenu:
+  bottomMenu:
     'gap-[10px] mt-[10px] mb-[20px] border-t border-mediumGray pt-[20px]',
 };

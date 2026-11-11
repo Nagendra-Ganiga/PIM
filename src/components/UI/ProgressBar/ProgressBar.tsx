@@ -18,14 +18,14 @@ export default function ProgressBar({
 
   return (
     <View
-      className={ProgressBarStyle.ProgressTrack}
+      className={ProgressBarStyle.progressTrack}
       style={{
         height,
         backgroundColor,
       }}
     >
       <View
-        className={ProgressBarStyle.ProgressTrack}
+        className={ProgressBarStyle.progressTrack}
         style={{
           width: `${percentage}%`,
           backgroundColor: progressColor,
@@ -36,6 +36,6 @@ export default function ProgressBar({
 }
 
 export const ProgressBarStyle = {
-  ProgressTrack: 'h-[8px] bg-lightGray rounded-full  overflow-hidden',
-  ProgressFill: 'h-full bg-brandBlue rounded-full',
+  progressTrack: 'h-[8px] bg-lightGray rounded-full  overflow-hidden',
+  progressFill: 'h-full bg-brandBlue rounded-full',
 };

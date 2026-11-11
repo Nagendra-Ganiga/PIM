@@ -43,8 +43,8 @@ type ButtonVariant =
   | 'warningOutlined'
   | 'info'
   | 'infoOutlined'
-  | 'BackButton'
-  | 'BackButtonOutlined';
+  | 'backButton'
+  | 'backButtonOutlined';
 
 export type ButtonProps = {
   title?: string;
@@ -96,8 +96,8 @@ export default function Button({
     warningOutlined: ButtonStyle.btnTextWarningOutlined,
     info: ButtonStyle.btnTextInfo,
     infoOutlined: ButtonStyle.btnTextInfoOutlined,
-    BackButton: ButtonStyle.btnTextBackButton,
-    BackButtonOutlined: ButtonStyle.btnTextBackButtonOutlined,
+    backButton: ButtonStyle.btnTextBackButton,
+    backButtonOutlined: ButtonStyle.btnTextBackButtonOutlined,
   };
 
   const textClass = disabled
@@ -195,9 +195,9 @@ export const ButtonStyle = {
   info: 'bg-sky-600 border-sky-600',
   infoOutlined: 'bg-transparent border-sky-600',
 
-  BackButton:
+  backButton:
     'bg-brandLightGray border-brandLightGray p-[10px] items-center justify-center',
-  BackButtonOutlined: 'bg-transparent border-brandLightGray',
+  backButtonOutlined: 'bg-transparent border-brandLightGray',
 
   // Disabled
   disabled: 'bg-gray-400 border-gray-400',

@@ -76,7 +76,8 @@ export default function Header({
 }
 
 export const HeaderStyles = {
-  headerContainer: 'flex flex-row items-center justify-between',
+  headerContainer:
+    'flex w-full flex-row items-center justify-between h-[75px] bg-white border-lightGray border-b-[1px] py-[10px] px-[20px]',
   leftSection: 'flex flex-row items-center gap-[15px] ',
   rightSection: 'flex flex-row items-center gap-[25px] ',
   titleContainer: 'flex flex-col gap-[0px]',

@@ -5,32 +5,22 @@ import Sidebar from './Sidebar';
 import Header from './Header';
 
 type LayoutProps = {
-  title?: string;
-  subtitle?: string;
-  backArrow?: boolean;
   sidebar?: React.ReactNode | boolean;
   header?: React.ReactNode;
   children?: React.ReactNode;
 };
 
 export default function Layout({
-  title,
-  subtitle,
-  backArrow,
   sidebar = <Sidebar />,
   header,
   children,
 }: LayoutProps) {
   return (
     <SafeAreaWrapper edges={['top']}>
-      <View className={LayoutStyles.LayoutContainer}>
+      <View className={LayoutStyles.layoutContainer}>
         {sidebar && <View className={LayoutStyles.leftBar}>{sidebar}</View>}
         <View className={LayoutStyles.rightBar}>
-          <View className={LayoutStyles.headerBar}>
-            {header ?? (
-              <Header title={title} subtitle={subtitle} backArrow={backArrow} />
-            )}
-          </View>
+          {header ?? <Header />}
           <View className={LayoutStyles.body}>{children}</View>
         </View>
       </View>
@@ -39,7 +29,7 @@ export default function Layout({
 }
 
 export const LayoutStyles = {
-  LayoutContainer: 'flex flex-row h-full w-full',
+  layoutContainer: 'flex flex-row h-full w-full',
   leftBar: 'w-[100px] bg-darkNavyBlue ',
   rightBar: 'flex-1 ',
   headerBar:

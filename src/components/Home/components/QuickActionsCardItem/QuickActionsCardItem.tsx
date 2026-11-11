@@ -1,10 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
+
 import SectionHeader, {
   type SectionHeaderProps,
-} from '../SectionHeader/SectionHeader';
-import { CardStyle } from '../../../styles/GlobalStyles';
-import Button, { type ButtonProps } from '../../UI/Button/Button';
+} from '../../../UI/Card/CardHeader/CardHeader';
+
+import Button, { type ButtonProps } from '../../../UI/Button/Button';
+import Card from '../../../UI/Card/Card';
 
 export type QuickActionItem = {
   id: number;
@@ -13,23 +15,23 @@ export type QuickActionItem = {
   onPress: () => void;
 };
 
-type QuickActionsCardProps = {
+export type QuickActionsCardProps = {
   sectionHeaderProps?: SectionHeaderProps;
   buttonProps?: ButtonProps;
-  actions: QuickActionItem[];
+  quickActionsData: QuickActionItem[];
 };
 
-export default function QuickActionsCard({
+export default function QuickActionsCardItem({
   sectionHeaderProps,
   buttonProps,
-  actions,
+  quickActionsData,
 }: QuickActionsCardProps) {
   return (
-    <View className={CardStyle.Card}>
-      <SectionHeader {...sectionHeaderProps} />
+    <Card>
+      {sectionHeaderProps && <SectionHeader {...sectionHeaderProps} />}
 
-      <View className="flex-row flex-wrap gap-[10px] p-[15px] justify-between">
-        {actions.map(item => (
+      <View className="flex-row flex-wrap gap-[10px] p-[10px] justify-between">
+        {quickActionsData.map(item => (
           <View key={item.id} className="w-[48.5%]">
             <Button
               {...buttonProps}
@@ -41,6 +43,6 @@ export default function QuickActionsCard({
           </View>
         ))}
       </View>
-    </View>
+    </Card>
   );
 }

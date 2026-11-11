@@ -3,14 +3,14 @@ import './global.css';
 import React from 'react';
 import AppContainer from './src/components/UI/AppContainer/AppContainer';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import StackNavigation from './src/routes/navigation/StackNavigation';
+import PrimaryContainer from './src/container/PrimaryContainer';
 // import Layout from './src/Layout/Layout';
 
 const App = () => {
   return (
     <SafeAreaProvider>
       <AppContainer barStyle="dark-content">
-        <StackNavigation />
+        <PrimaryContainer />
       </AppContainer>
     </SafeAreaProvider>
   );
