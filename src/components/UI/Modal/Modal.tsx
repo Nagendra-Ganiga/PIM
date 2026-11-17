@@ -12,7 +12,7 @@
 // - Includes an onClose callback when the modal is dismissed.
 
 import React, { useState } from 'react';
-import { View, Text, Pressable, Modal, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 import { Images } from '../../../assets/images/Images';
 import { BlurView } from '@react-native-community/blur';
 import ButtonsWrapper from '../Button/Button';
@@ -87,14 +87,15 @@ export default function ModalWrapper({
               )}
 
               {closeIcon && (
-                <Pressable
+                <TouchableOpacity
                   onPress={handleClose}
                   hitSlop={10}
+                  activeOpacity={0.7}
                   accessibilityRole="button"
                   accessibilityLabel="Close modal"
                 >
                   <Images.BlackCloseIcon width={20} height={20} />
-                </Pressable>
+                </TouchableOpacity>
               )}
             </View>
 
@@ -115,7 +116,9 @@ export default function ModalWrapper({
 
       {/* Trigger button */}
       {trigger ? (
-        <Pressable onPress={handleOpen}>{trigger}</Pressable>
+        <TouchableOpacity onPress={handleOpen} activeOpacity={0.7}>
+          {trigger}
+        </TouchableOpacity>
       ) : (
         <ButtonsWrapper
           variant="info"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Pressable, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { useNavigation, useNavigationState } from '@react-navigation/native';
 
 import {
@@ -40,8 +40,9 @@ export default function Sidebar() {
     const isActive = activeRoute === item.id;
 
     return (
-      <Pressable
+      <TouchableOpacity
         key={item.id}
+        activeOpacity={0.7}
         onPress={() => {
           if (item.id === 'Home' || item.id === 'Schedules') {
             navigation.navigate(item.id);
@@ -74,18 +75,19 @@ export default function Sidebar() {
         >
           {item.label}
         </Text>
-      </Pressable>
+      </TouchableOpacity>
     );
   };
 
   return (
     <View className={SidebarStyles.container}>
-      <Pressable
+      <TouchableOpacity
+        activeOpacity={0.7}
         className={SidebarStyles.logo}
         onPress={() => navigation.navigate('Home')}
       >
         <Box color={Colors.white} size={24} />
-      </Pressable>
+      </TouchableOpacity>
 
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         <View className={SidebarStyles.menuList}>
@@ -102,21 +104,14 @@ export default function Sidebar() {
 
 const SidebarStyles = {
   container: 'flex-1 bg-darkNavyBlue p-[10px]',
-
   logo: 'items-center justify-center mb-[20px] bg-brandBlue px-[20px] py-[15px] mx-[10px] rounded-[10px]',
-
   menuList: 'gap-[10px]',
-
   menuItem:
     'relative flex-col items-center justify-center p-[10px] gap-[5px] rounded-[10px] border-l-[3px]',
-
   menuLabel: 'text-[12px] font-HeeboRegular',
-
   badge:
     'absolute -top-2 -right-3 bg-red rounded-full w-[18px] h-[18px] items-center justify-center',
-
   statusDot: 'absolute -top-1 -right-2 w-2 h-2 rounded-full bg-emerald-400',
-
   bottomMenu:
     'gap-[10px] mt-[10px] mb-[20px] border-t border-mediumGray pt-[20px]',
 };

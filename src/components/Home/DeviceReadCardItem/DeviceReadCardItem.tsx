@@ -3,9 +3,9 @@ import { View, Text } from 'react-native';
 
 import SectionHeader, {
   type SectionHeaderProps,
-} from '../../../UI/Card/CardHeader/CardHeader';
-import Button, { type ButtonProps } from '../../../UI/Button/Button';
-import Card from '../../../UI/Card/Card';
+} from '../../UI/Card/CardHeader/CardHeader';
+import Button, { type ButtonProps } from '../../UI/Button/Button';
+import Card from '../../UI/Card/Card';
 
 export type DeviceReadItem = {
   id: number;

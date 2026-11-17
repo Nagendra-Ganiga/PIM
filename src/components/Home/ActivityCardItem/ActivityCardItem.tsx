@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Check, ChevronRight } from 'lucide-react-native';
 
 import SectionHeader, {
@@ -31,9 +31,10 @@ export default function ActivityCardItem({
 
       <View className={ActivityStyles.list}>
         {activities.map(item => (
-          <Pressable
+          <TouchableOpacity
             key={item.id}
             onPress={item.onPress}
+            activeOpacity={0.7}
             className={ActivityStyles.row}
           >
             {/* Success Icon */}
@@ -44,7 +45,6 @@ export default function ActivityCardItem({
             {/* Activity Details */}
             <View className={ActivityStyles.details}>
               <Text className={ActivityStyles.title}>{item.title}</Text>
-
               <Text className={ActivityStyles.reference}>{item.reference}</Text>
             </View>
 
@@ -53,7 +53,7 @@ export default function ActivityCardItem({
 
             {/* Arrow */}
             <ChevronRight size={20} color={Colors.brandDarkBlue} />
-          </Pressable>
+          </TouchableOpacity>
         ))}
       </View>
     </Card>
@@ -64,7 +64,7 @@ export const ActivityStyles = {
   list: '',
   row: 'flex-row items-center gap-[12px] px-[15px] py-[15px] border-b border-lightGray',
   iconWrapper:
-    ' rounded-[10px] bg-brandTeal  items-center justify-center px-[10px] py-[10px]',
+    'rounded-[10px] bg-brandTeal items-center justify-center px-[10px] py-[10px]',
   details: 'flex-1 gap-[5px]',
   title: 'text12BDarkNavyBlue',
   reference: 'text10RMediumGray',

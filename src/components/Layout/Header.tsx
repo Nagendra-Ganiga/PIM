@@ -30,7 +30,7 @@ export default function Header({
         {backArrow && (
           <View>
             <Button
-              variant="BackButton"
+              variant="backButton"
               buttonType="icon"
               onPress={() => navigation.goBack()}
               icon={<ArrowLeft size={20} />}

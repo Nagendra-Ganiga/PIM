@@ -36,6 +36,17 @@ const Colors = require('./Colors').default;
 
 const fontSizes = [10, 11, 12, 14, 16, 18, 20, 24];
 
+const TypographySizes = {
+  10: 10,
+  11: 11,
+  12: 12,
+  14: 14,
+  16: 16,
+  18: 18,
+  20: 20,
+  24: 24,
+};
+
 const fontFamilies = {
   R: 'Heebo-Regular',
   M: 'Heebo-Medium',
@@ -59,7 +70,7 @@ Object.entries(fontFamilies).forEach(([fontKey, fontFamily]) => {
 
       utilities[className] = {
         fontFamily,
-        fontSize,
+        fontSize: TypographySizes[fontSize],
         color: colorValue,
       };
     });
