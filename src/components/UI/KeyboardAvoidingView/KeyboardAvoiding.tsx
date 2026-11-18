@@ -1,68 +1,66 @@
-import React, { type ReactNode } from 'react';
+import React, { useEffect, useState, type ReactNode } from 'react';
 
 import {
+  Keyboard,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
   type StyleProp,
   type ViewStyle,
-  type ScrollViewProps,
-  type KeyboardAvoidingViewProps,
 } from 'react-native';
 
-type KeyboardAvoidingWrapperProps = {
+type Props = {
   children: ReactNode;
-
-  behavior?: KeyboardAvoidingViewProps['behavior'];
-  keyboardVerticalOffset?: number;
-
-  enabled?: boolean;
-  scrollEnabled?: boolean;
-  showsVerticalScrollIndicator?: boolean;
-
   contentContainerStyle?: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
-
-  keyboardShouldPersistTaps?: ScrollViewProps['keyboardShouldPersistTaps'];
-  extraScrollHeight?: number;
 };
 
-const KeyboardAvoidingWrapper = ({
+const KeyboardAvoiding = ({
   children,
-  behavior = Platform.OS === 'ios' ? 'padding' : 'height',
-  keyboardVerticalOffset = 0,
-  enabled = true,
-  scrollEnabled = true,
-  showsVerticalScrollIndicator = false,
-  contentContainerStyle,
   style,
-  keyboardShouldPersistTaps = 'handled',
-  extraScrollHeight = 0,
-}: KeyboardAvoidingWrapperProps) => {
+  contentContainerStyle,
+}: Props) => {
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    const show = Keyboard.addListener('keyboardDidShow', () => {
+      setKeyboardVisible(true);
+    });
+
+    const hide = Keyboard.addListener('keyboardDidHide', () => {
+      setKeyboardVisible(false);
+    });
+
+    return () => {
+      show.remove();
+      hide.remove();
+    };
+  }, []);
+
   return (
     <KeyboardAvoidingView
-      style={[{ flex: 1 }, style]}
-      behavior={behavior}
-      keyboardVerticalOffset={keyboardVerticalOffset}
-      enabled={enabled}
+      style={[{ flex: 1, width: '100%' }, style]}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
-      {scrollEnabled ? (
-        <ScrollView
-          style={{ flex: 1 }}
-          contentContainerStyle={[
-            { flexGrow: 1, paddingBottom: extraScrollHeight },
-            contentContainerStyle,
-          ]}
-          showsVerticalScrollIndicator={showsVerticalScrollIndicator}
-          keyboardShouldPersistTaps={keyboardShouldPersistTaps}
-        >
-          {children}
-        </ScrollView>
-      ) : (
-        children
-      )}
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={[
+          {
+            flexGrow: 1,
+            justifyContent: keyboardVisible ? 'flex-start' : 'center',
+            alignItems: 'center',
+            paddingVertical: 20,
+          },
+          contentContainerStyle,
+        ]}
+        keyboardShouldPersistTaps="handled"
+        keyboardDismissMode="on-drag"
+        showsVerticalScrollIndicator={false}
+      >
+        {children}
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 };
 
-export default KeyboardAvoidingWrapper;
+export default KeyboardAvoiding;

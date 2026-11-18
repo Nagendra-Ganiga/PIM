@@ -9,6 +9,7 @@ const Colors = {
   brandLightGreen: '#E6F4EC',
   brandGreen: '#E4F3EA',
   brandLightGray: '#F8FAFC',
+  lightGray: '#EFF2F6',
 
   brandTealBase: '#6BA78B',
   brandTeal: '#E6F4EC',
@@ -20,10 +21,12 @@ const Colors = {
   brandPinkBase: '#D18487',
   brandSkyBlueBase: '#5188C7',
   brandSkyBlue: '#E6F1FB',
+  brandNavy: '#90BBEB',
+  brandNavyBase: ' #112F52',
 
   brandBlack: '#222222',
   darkGray: '#6E6E6E',
-  lightGray: '#DFE6ED',
+  // lightGray: '#DFE6ED',
   red: '#B33D42',
   lightBackground: '#F5F7F9',
   success: '#16A34A',

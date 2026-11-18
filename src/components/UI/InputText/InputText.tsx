@@ -18,7 +18,7 @@
 // - Automatically removes focus when the keyboard is dismissed.
 // - Uses centralized InputTextStyle styles for consistent UI across the application.
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, type ReactNode } from 'react';
 
 import {
   Keyboard,
@@ -46,6 +46,13 @@ type InputTextProps = {
   numberOfLines?: number;
   textAlignVertical?: 'auto' | 'top' | 'bottom' | 'center';
   height?: number | string;
+  fontSize?: number;
+  paddingVertical?: number;
+  icon?: ReactNode;
+  iconPosition?: 'left' | 'right';
+  passwordShowIcon?: ReactNode;
+  passwordHideIcon?: ReactNode;
+  passwordIconPosition?: 'left' | 'right';
 };
 
 export default function InputText({
@@ -59,15 +66,22 @@ export default function InputText({
   editable = true,
   maxLength,
   autoFocus = false,
-  focusEnabled = true,
+  focusEnabled = false,
   multiline = false,
   numberOfLines,
   textAlignVertical = 'center',
   height,
+  fontSize = 16,
+  paddingVertical = 8,
+  icon,
+  iconPosition = 'right',
+  passwordShowIcon,
+  passwordHideIcon,
+  passwordIconPosition = 'right',
 }: InputTextProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [textAreaHeight, setTextAreaHeight] = useState(56);
+  // const [textAreaHeight, setTextAreaHeight] = useState(56);
 
   const inputRef = useRef<React.ElementRef<typeof TextInput>>(null);
 
@@ -90,6 +104,10 @@ export default function InputText({
   const inputClassName = [
     InputTextStyle.inputBase,
     isActive ? 'border-brandBlue' : 'border-darkGray',
+    icon && iconPosition === 'left' ? 'pl-[45px]' : '',
+    icon && iconPosition === 'right' ? 'pr-[45px]' : '',
+    secureTextEntry && passwordIconPosition === 'left' ? 'pl-[45px]' : '',
+    secureTextEntry && passwordIconPosition === 'right' ? 'pr-[45px]' : '',
   ].join(' ');
 
   useEffect(() => {
@@ -106,20 +124,44 @@ export default function InputText({
   };
 
   // Automatically adjust TextArea height based on content
-  const handleContentSizeChange = (event: {
-    nativeEvent: { contentSize: { height: number } };
-  }) => {
-    if (multiline) {
-      const contentHeight = event.nativeEvent.contentSize.height;
-      setTextAreaHeight(Math.max(56, contentHeight + 24));
-    }
-  };
+  // const handleContentSizeChange = (event: {
+  //   nativeEvent: { contentSize: { height: number } };
+  // }) => {
+  //   if (multiline) {
+  //     const contentHeight = event.nativeEvent.contentSize.height;
+  //     setTextAreaHeight(Math.max(56, contentHeight + 24));
+  //   }
+  // };
+
+  const calculatedHeight = fontSize * 1.5 + paddingVertical * 2 + 8;
+  const inputHeight = height ?? calculatedHeight;
 
   return (
     <View>
       <Text className={labelClassName}>{labelText}</Text>
 
       <View className="relative">
+        {/* Left Custom Icon */}
+        {icon && iconPosition === 'left' && (
+          <View className={InputTextStyle.inputIcon} style={{ left: 10 }}>
+            {icon}
+          </View>
+        )}
+
+        {/* Left Password Icon */}
+        {secureTextEntry && passwordIconPosition === 'left' && (
+          <TouchableOpacity
+            className={InputTextStyle.passwordIcon}
+            style={{ left: 10 }}
+            onPress={togglePasswordVisibility}
+            disabled={!editable}
+            hitSlop={10}
+          >
+            {showPassword
+              ? passwordShowIcon ?? <Images.Hide />
+              : passwordHideIcon ?? <Images.Show />}
+          </TouchableOpacity>
+        )}
         <TextInput
           ref={inputRef}
           className={inputClassName}
@@ -138,24 +180,38 @@ export default function InputText({
           multiline={multiline}
           numberOfLines={numberOfLines}
           textAlignVertical={multiline ? 'top' : textAlignVertical}
-          onContentSizeChange={handleContentSizeChange}
+          // onContentSizeChange={handleContentSizeChange}
           scrollEnabled={multiline}
           style={{
-            height: multiline ? textAreaHeight : height ?? 56,
+            height: inputHeight,
+            fontSize,
+            paddingVertical,
+            textAlignVertical: multiline ? 'top' : 'center',
+            includeFontPadding: true,
           }}
         />
 
-        {secureTextEntry && (
-          <View className={InputTextStyle.inputShowHideIcon}>
-            <TouchableOpacity
-              onPress={togglePasswordVisibility}
-              disabled={!editable}
-              hitSlop={10}
-              accessibilityRole="button"
-            >
-              {showPassword ? <Images.Hide /> : <Images.Show />}
-            </TouchableOpacity>
+        {/* Right Custom Icon */}
+        {icon && iconPosition === 'right' && (
+          <View className={InputTextStyle.inputIcon} style={{ right: 10 }}>
+            {icon}
           </View>
+        )}
+
+        {/* Right Password Icon */}
+        {secureTextEntry && passwordIconPosition === 'right' && (
+          <TouchableOpacity
+            className={InputTextStyle.passwordIcon}
+            style={{ right: 10 }}
+            onPress={togglePasswordVisibility}
+            disabled={!editable}
+            hitSlop={10}
+            activeOpacity={0.7}
+          >
+            {showPassword
+              ? passwordShowIcon ?? <Images.Hide />
+              : passwordHideIcon ?? <Images.Show />}
+          </TouchableOpacity>
         )}
       </View>
     </View>
@@ -165,13 +221,17 @@ export default function InputText({
 // Component for styling InputText in the application
 export const InputTextStyle = {
   inputBase:
-    'w-full h-[56px] border rounded-[8px] text-black px-[20px]  text-[20px] text-black font-HeeboRegular',
-
-  labelText: 'mb-[5px] px-[5px] text-[16px] text-black font-HeeboRegular',
+    'w-full border border-mediumGray rounded-[8px] text-black px-[20px] font-HeeboRegular',
+  labelText: 'mb-[5px] px-[5px] text-[14px] text-black font-HeeboRegular',
   labelDown:
     'absolute top-[50%] left-[20px] z-10 bg-white px-[5px] text-[20px] transform translate-y-[-50%]',
   labelUp: 'absolute top-[-8px] left-[15px] z-10 bg-white px-[5px] text-[12px]',
 
   inputShowHideIcon:
     'absolute right-[10px] top-[50%] w-[30px] h-[30px] transform translate-y-[-50%] flex-row items-center justify-center',
+
+  inputIcon:
+    'absolute top-[50%] -translate-y-1/2 w-[30px] h-[30px] items-center justify-center',
+  passwordIcon:
+    'absolute z-10 w-[30px] h-[30px] items-center justify-center -translate-y-1/2 top-[50%]',
 };

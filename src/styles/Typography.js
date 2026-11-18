@@ -34,7 +34,7 @@
 const plugin = require('tailwindcss/plugin');
 const Colors = require('./Colors').default;
 
-const fontSizes = [10, 11, 12, 14, 16, 18, 20, 24];
+const fontSizes = [10, 11, 12, 14, 16, 18, 20, 24, 32];
 
 const TypographySizes = {
   10: 10,
@@ -45,6 +45,7 @@ const TypographySizes = {
   18: 18,
   20: 20,
   24: 24,
+  32: 32,
 };
 
 const fontFamilies = {

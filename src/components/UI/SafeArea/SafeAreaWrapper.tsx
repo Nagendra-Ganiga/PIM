@@ -9,11 +9,11 @@ type SafeAreaWrapperProps = {
 
 export default function SafeAreaWrapper({
   children,
-  edges = ['top', 'right', 'bottom', 'left'],
+  edges = ['top'],
   className,
 }: SafeAreaWrapperProps) {
   return (
-    <SafeAreaView className={` bg-white ${className}`} edges={edges}>
+    <SafeAreaView className={`flex-1 bg-white ${className}`} edges={edges}>
       {children}
     </SafeAreaView>
   );

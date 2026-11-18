@@ -56,6 +56,7 @@ export type ButtonProps = {
   iconPosition?: 'left' | 'right' | 'top';
   style?: StyleProp<ViewStyle>;
   rounded?: boolean;
+  textStyle?: string;
 };
 
 export default function Button({
@@ -68,6 +69,7 @@ export default function Button({
   iconPosition = 'left',
   style,
   rounded = false,
+  textStyle = '',
 }: ButtonProps) {
   // Default variant applies only to default buttons
   const activeVariant: ButtonVariant =
@@ -162,7 +164,11 @@ export default function Button({
         <View className={ButtonStyle.btnContentBase}>
           {iconPosition === 'left' && renderIcon()}
 
-          {title && <Text className={ButtonStyle.plainText}>{title}</Text>}
+          {title && (
+            <Text className={`${ButtonStyle.plainText} ${textStyle}`}>
+              {title}
+            </Text>
+          )}
 
           {iconPosition === 'right' && renderIcon()}
         </View>
@@ -174,7 +180,8 @@ export default function Button({
 // Component for styling buttons in the application
 export const ButtonStyle = {
   // Base
-  btnBase: 'border py-[8px] px-[20px] items-center justify-center',
+  btnBase:
+    'border py-[12px] px-[20px] items-center justify-center rounded-[8px]',
 
   btnTextBase: 'text14BWhite',
 
