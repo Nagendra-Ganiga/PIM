@@ -52,7 +52,9 @@ export default function Header({
             title="Offline"
             variant="success"
             rounded
-            icon={<Wifi size={20} color={Colors.brandTealBase} />}
+            icon={<Wifi size={16} color={Colors.brandTealBase} />}
+            fontSize={12}
+            paddingVertical={8}
           />
         </View>
         <View>

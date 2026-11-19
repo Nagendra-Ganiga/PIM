@@ -26,7 +26,7 @@ const Colors = {
 
   brandBlack: '#222222',
   darkGray: '#6E6E6E',
-  // lightGray: '#DFE6ED',
+  gray: '#DFE6ED',
   red: '#B33D42',
   lightBackground: '#F5F7F9',
   success: '#16A34A',

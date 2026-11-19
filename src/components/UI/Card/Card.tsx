@@ -11,5 +11,5 @@ export default function Card({ children }: CardProps) {
 }
 
 export const CardStyle = {
-  card: 'w-full flex-1 bg-white border border-lightGray rounded-[10px] overflow-hidden ',
+  card: 'w-full flex-1 bg-white border border-gray rounded-[10px] overflow-hidden ',
 };

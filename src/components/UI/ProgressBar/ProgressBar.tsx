@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import Colors from '../../../styles/Colors';
 
 type ProgressBarProps = {
   progress: number;
@@ -11,8 +12,8 @@ type ProgressBarProps = {
 export default function ProgressBar({
   progress,
   height = 8,
-  backgroundColor,
-  progressColor,
+  backgroundColor = Colors.lightGray,
+  progressColor = Colors.brandBlue,
 }: ProgressBarProps) {
   const percentage = Math.min(Math.max(progress, 0), 100);
 

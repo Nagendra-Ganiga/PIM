@@ -30,6 +30,7 @@ import StackCardItem, {
   type StatsItem,
 } from '../../../components/Home/StackCardItem/StackCardItem';
 import { ChevronRight } from 'lucide-react-native/icons';
+import { PageHeaderStyle } from '../../../styles/GlobalStyles';
 
 const stats: StatsItem[] = [
   {
@@ -83,10 +84,14 @@ const stats: StatsItem[] = [
 ];
 const assignmentData: AssignmentCardProps = {
   sectionHeader: {
-    eyebrow: 'Active assignment',
-    title: 'Year-end Raw Materials Count',
-    status: 'Counting open',
-    statusType: 'success',
+    textProps: {
+      eyebrow: 'Active assignment',
+      title: 'Year-end Raw Materials Count',
+    },
+    statusProps: {
+      status: 'Counting open',
+      statusType: 'success',
+    },
   },
   schedule: 'PI-2025-00481',
   location: 'RM01 - Raw Materials',
@@ -177,12 +182,16 @@ export default function Home() {
       }
     >
       <ScrollView>
-        <View className={HomeStyles.container}>
-          <View className={HomeStyles.headerContent}>
-            <View className={HomeStyles.userInfo}>
-              <Text className={HomeStyles.date}>Thursday, 18 December</Text>
-              <Text className={HomeStyles.greeting}>Good morning, Alex!</Text>
-              <Text className={HomeStyles.location}>
+        <View className={PageHeaderStyle.container}>
+          <View className={PageHeaderStyle.headerContent}>
+            <View className={PageHeaderStyle.userInfo}>
+              <Text className={PageHeaderStyle.date}>
+                Thursday, 18 December
+              </Text>
+              <Text className={PageHeaderStyle.greeting}>
+                Good morning, Alex!
+              </Text>
+              <Text className={PageHeaderStyle.location}>
                 North Manufacturing Plant · Employee E10482
               </Text>
             </View>
@@ -191,8 +200,10 @@ export default function Home() {
                 buttonType="iconText"
                 variant="success"
                 title="Online · Synced 2 min ago"
-                icon={<Bell size={20} color={Colors.brandTealBase} />}
+                icon={<Bell size={18} color={Colors.brandTealBase} />}
                 rounded
+                fontSize={12}
+                paddingVertical={10}
               />
             </View>
           </View>
@@ -206,7 +217,9 @@ export default function Home() {
             <View className="flex-[1]">
               <QuickActionsCardItem
                 sectionHeaderProps={{
-                  title: 'Quick actions',
+                  textProps: {
+                    title: 'Quick actions',
+                  },
                 }}
                 buttonProps={{
                   variant: 'softOutlined',
@@ -221,13 +234,18 @@ export default function Home() {
             <View className="flex-[2]">
               <ActivityCardItem
                 sectionHeaderProps={{
-                  title: 'Recent activities',
-                  showViewAll: true,
-                  viewAllButtonProps: {
-                    title: 'View all',
-                    buttonType: 'text',
-                    iconPosition: 'right',
-                    icon: <ChevronRight color={Colors.brandBlue} size={20} />,
+                  textProps: {
+                    title: 'Recent activities',
+                  },
+                  viewButtonProps: {
+                    showViewAll: true,
+                    viewAllButtonProps: {
+                      title: 'View all',
+                      buttonType: 'text',
+                      iconPosition: 'right',
+                      icon: <ChevronRight color={Colors.brandBlue} size={20} />,
+                      paddingHorizontal: 0,
+                    },
                   },
                 }}
                 activities={activities}
@@ -236,9 +254,14 @@ export default function Home() {
             <View className="flex-[1]">
               <DeviceReadCardItem
                 sectionHeader={{
-                  title: 'Device readiness',
-                  status: 'Ready',
-                  statusType: 'success',
+                  textProps: {
+                    title: 'Device readiness',
+                  },
+
+                  statusProps: {
+                    status: 'Ready',
+                    statusType: 'success',
+                  },
                 }}
                 deviceReadData={deviceReadData}
               />
@@ -251,12 +274,6 @@ export default function Home() {
 }
 
 export const HomeStyles = {
-  container: 'flex flex-col gap-[20px] my-[30px]',
-  headerContent: 'flex flex-row justify-between items-center',
-  userInfo: 'flex-1 gap-[5px]',
-  date: 'text12BBrandBlue',
-  greeting: 'text24BBlack',
-  location: 'text12BMediumGray',
   cardRow: 'flex-row gap-[20px]',
   col2: 'w-full flex-row gap-[20px]',
 };

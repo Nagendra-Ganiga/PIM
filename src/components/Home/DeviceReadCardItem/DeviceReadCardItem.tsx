@@ -54,7 +54,7 @@ export default function DeviceReadCard({
 
 export const DeviceReadStyles = {
   list: 'flex-col',
-  row: 'flex-row items-center justify-between px-[20px] py-[20px] border-b border-lightGray',
+  row: 'flex-row items-center justify-between px-[20px] py-[20px] border-b border-gray',
   label: 'text12RMediumGray',
   value: 'text12BDarkNavyBlue',
   footer: 'flex-row items-center justify-center gap-[5px] py-[20px]',

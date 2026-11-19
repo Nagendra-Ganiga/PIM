@@ -57,6 +57,9 @@ export type ButtonProps = {
   style?: StyleProp<ViewStyle>;
   rounded?: boolean;
   textStyle?: string;
+  fontSize?: number;
+  paddingVertical?: number;
+  paddingHorizontal?: number;
 };
 
 export default function Button({
@@ -70,6 +73,9 @@ export default function Button({
   style,
   rounded = false,
   textStyle = '',
+  fontSize = 14,
+  paddingVertical = 10,
+  paddingHorizontal = 20,
 }: ButtonProps) {
   // Default variant applies only to default buttons
   const activeVariant: ButtonVariant =
@@ -128,10 +134,16 @@ export default function Button({
   return (
     <TouchableOpacity
       className={containerClass}
-      style={style}
       disabled={disabled}
       onPress={onPress}
       activeOpacity={0.7}
+      style={[
+        style,
+        {
+          paddingVertical,
+          paddingHorizontal,
+        },
+      ]}
     >
       {isIconOnly && renderIcon()}
 
@@ -148,7 +160,10 @@ export default function Button({
           {iconPosition === 'left' && renderIcon()}
           {iconPosition === 'top' && renderIcon()}
           {title && (
-            <Text className={`${ButtonStyle.btnTextBase} ${textClass}`}>
+            <Text
+              className={`${ButtonStyle.btnTextBase} ${textClass}`}
+              style={{ fontSize }}
+            >
               {title}
             </Text>
           )}
@@ -158,14 +173,19 @@ export default function Button({
       )}
 
       {buttonType === 'default' && title && (
-        <Text className={textClass}>{title}</Text>
+        <Text className={textClass} style={{ fontSize }}>
+          {title}
+        </Text>
       )}
       {isPlainText && (
         <View className={ButtonStyle.btnContentBase}>
           {iconPosition === 'left' && renderIcon()}
 
           {title && (
-            <Text className={`${ButtonStyle.plainText} ${textStyle}`}>
+            <Text
+              className={`${ButtonStyle.plainText} ${textStyle}`}
+              style={{ fontSize }}
+            >
               {title}
             </Text>
           )}
@@ -180,14 +200,13 @@ export default function Button({
 // Component for styling buttons in the application
 export const ButtonStyle = {
   // Base
-  btnBase:
-    'border py-[12px] px-[20px] items-center justify-center rounded-[8px]',
+  btnBase: 'border items-center justify-center rounded-[8px]',
 
   btnTextBase: 'text14BWhite',
 
   // Button backgrounds
   filled: 'bg-brandBlue border-brandBlue',
-  outlined: 'bg-transparent border-lightGray',
+  outlined: 'bg-white border-lightGray',
   softOutlined: 'bg-brandLightGray border-brandLightGray',
 
   success: 'bg-brandTeal border-brandTeal',
